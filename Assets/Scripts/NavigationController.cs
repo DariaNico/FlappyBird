@@ -17,11 +17,11 @@ public class NavigationController : MonoBehaviour {
         SceneManager.LoadScene("FlappyGame");
     }
 
-    public void QuitGame() {
+    public void SettingsMenu() {
         // DEBUG LOG
-        print("Bye Bye!");
+        print("Let's go change some things!");
 
-        Application.Quit();
+
     }
 
     public void BackToMainMenu() {
@@ -30,4 +30,11 @@ public class NavigationController : MonoBehaviour {
 
         SceneManager.LoadScene("MainMenu");
     }
+    public void QuitGame() {
+        // DEBUG LOG
+        print("Bye Bye!");
+
+        Application.Quit();
+    }
+
 }
