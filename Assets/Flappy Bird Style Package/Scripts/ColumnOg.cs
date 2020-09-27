@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Column : MonoBehaviour 
+public class ColumnOg : MonoBehaviour 
 {
 	void OnTriggerEnter2D(Collider2D other)
 	{
