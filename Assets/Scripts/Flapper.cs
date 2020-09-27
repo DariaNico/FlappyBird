@@ -6,9 +6,10 @@ public class Flapper : MonoBehaviour
 {
 	public float upForce;					//Upward force of the "flap".
 	private bool isDead = false;			//Has the player collided with a wall?
-	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
 
 	private Animator anim;					//Reference to the Animator component.
+	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
+
 
 	void Start()
 	{
@@ -24,9 +25,11 @@ public class Flapper : MonoBehaviour
 		if (isDead == false) {
 			//Look for input to trigger a "flap".
 			if (shouldFlap()) {
+				// Debug logs
 				print("I'm flapping!");
 				print(rb2d.velocity);
 				print(upForce);
+
 				//...tell the animator about it and then...
 				anim.SetTrigger("Flap");
 				//...zero out the birds current y velocity before...
@@ -38,6 +41,7 @@ public class Flapper : MonoBehaviour
 		}
 	}
 
+	// Flapping controls here
 	private bool shouldFlap() {
 		return Input.GetButtonDown("Flap") || Input.GetMouseButtonDown(0);
 	}
