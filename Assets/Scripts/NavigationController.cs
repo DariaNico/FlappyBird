@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class NavigationController : MonoBehaviour {
     void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
-            BackToMainMenu();
+            BackToMain();
         }
     }
 
@@ -21,10 +21,10 @@ public class NavigationController : MonoBehaviour {
         // DEBUG LOG
         print("Let's go change some things!");
 
-
+        SceneManager.LoadScene("SettingsMenu");
     }
 
-    public void BackToMainMenu() {
+    public void BackToMain() {
         // DEBUG LOG
         print("Going back to Main Menu");
 
