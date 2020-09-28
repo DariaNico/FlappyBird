@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class NavigationController : MonoBehaviour {
     void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)) {
-            BackToMainMenu();
+            BackToMain();
         }
     }
 
@@ -17,6 +17,19 @@ public class NavigationController : MonoBehaviour {
         SceneManager.LoadScene("FlappyGame");
     }
 
+    public void SettingsMenu() {
+        // DEBUG LOG
+        print("Let's go change some things!");
+
+        SceneManager.LoadScene("SettingsMenu");
+    }
+
+    public void BackToMain() {
+        // DEBUG LOG
+        print("Going back to Main Menu");
+
+        SceneManager.LoadScene("MainMenu");
+    }
     public void QuitGame() {
         // DEBUG LOG
         print("Bye Bye!");
@@ -24,10 +37,4 @@ public class NavigationController : MonoBehaviour {
         Application.Quit();
     }
 
-    public void BackToMainMenu() {
-        // DEBUG LOG
-        print("Going back to Main Menu");
-
-        SceneManager.LoadScene("MainMenu");
-    }
 }
