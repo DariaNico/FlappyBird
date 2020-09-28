@@ -49,7 +49,7 @@ public class Flapper : MonoBehaviour {
 			// If the flapper collides with something set it to dead...
 			isDead = true;
 			//...tell the Animator about it...
-			anim.SetTrigger("Die");
+			anim.SetTrigger("DieBird");
 			//...and tell the game controller about it.
 			GameController.instance.FlapperDied();
 		}
