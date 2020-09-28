@@ -11,6 +11,7 @@ public class Flapper : MonoBehaviour {
 	private Animator anim; //Reference to the Animator component.
 	private Rigidbody2D rb2d; //Holds a reference to the Rigidbody2D component of the flapper.
 
+
 	void Awake() {
 		// Enforce the singleton pattern for GameController
 		//If we don't currently have a game controller...
