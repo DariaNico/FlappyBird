@@ -46,6 +46,9 @@ public class Flapper : MonoBehaviour {
 				//	new Vector2(rb2d.velocity.x, 0);
 				//..giving the flapper some upward force.
 				rb2d.AddForce(new Vector2(0, upForce));
+
+				//Flap sound
+				AudioManager.instance.PlaySound("Flap");
 			}
 		}
 	}
@@ -53,6 +56,8 @@ public class Flapper : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D intruder) {
 		// Zero out the flapper's velocity
 		rb2d.velocity = Vector2.zero;
+		//Die sound
+		AudioManager.instance.PlaySound("Die");
 
 		if (instance.tag == "Test") {
 			// DEBUG LOG
