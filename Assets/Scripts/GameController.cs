@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
 
     void Update() {
         //If the game is over and the player has pressed some input...
-        if (gameOver && Flapper.instance.ShouldFlap()) {
+        if (gameOver && Flapper.instance.FlapFlapper()) {
             // DEBUG LOG
             print("Restarting Game");
 

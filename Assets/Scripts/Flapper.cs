@@ -11,7 +11,6 @@ public class Flapper : MonoBehaviour {
 	private Animator anim; //Reference to the Animator component.
 	private Rigidbody2D rb2d; //Holds a reference to the Rigidbody2D component of the flapper.
 
-
 	void Awake() {
 		// Enforce the singleton pattern for GameController
 		//If we don't currently have a game controller...
@@ -33,24 +32,7 @@ public class Flapper : MonoBehaviour {
 
 	void Update() {
 		//Don't allow control if the flapper has died.
-		if (!isDead) {
-			//Look for input to trigger a "flap".
-			if (ShouldFlap()) {
-				// DEBUG LOG
-				print("Flap Flap! velocity: " + rb2d.velocity + ", upForce: " + upForce);
-
-				//...tell the animator about it and then...
-				anim.SetTrigger("Flap");
-				//...zero out the flapper's current y velocity before...
-				rb2d.velocity = Vector2.zero;
-				//	new Vector2(rb2d.velocity.x, 0);
-				//..giving the flapper some upward force.
-				rb2d.AddForce(new Vector2(0, upForce));
-
-				//Flap sound
-				AudioManager.instance.PlaySound("Flap");
-			}
-		}
+		if (!isDead) { FlapFlapper(); }
 	}
 
 	void OnCollisionEnter2D(Collision2D intruder) {
@@ -75,5 +57,26 @@ public class Flapper : MonoBehaviour {
 	// Flapping controls here
 	public bool ShouldFlap() {
 		return Input.GetButtonDown("Flap") || Input.GetMouseButtonDown(0);
+	}
+
+	public bool FlapFlapper() {
+		//Look for input to trigger a "flap".
+		if (ShouldFlap()) {
+			// DEBUG LOG
+			print("Flap Flap! velocity: " + rb2d.velocity + ", upForce: " + upForce);
+
+			//...tell the animator about it and then...
+			anim.SetTrigger("Flap");
+			//...zero out the flapper's current y velocity before...
+			rb2d.velocity = Vector2.zero;
+			//	new Vector2(rb2d.velocity.x, 0);
+			//..giving the flapper some upward force.
+			rb2d.AddForce(new Vector2(0, upForce));
+
+      //Flap sound
+      AudioManager.instance.PlaySound("Flap");
+		}
+
+		return ShouldFlap();
 	}
 }
