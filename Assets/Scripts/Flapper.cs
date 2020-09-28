@@ -80,8 +80,8 @@ public class Flapper : MonoBehaviour {
 			//..giving the flapper some upward force.
 			rb2d.AddForce(new Vector2(0, upForce));
 
-      //Flap sound
-      AudioManager.instance.PlaySound("Flap");
+			//Flap sound
+			AudioManager.instance.PlaySound("Flap");
 		}
 
 		return ShouldFlap();
