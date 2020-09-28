@@ -11,38 +11,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListenForAudioCommand : MonoBehaviour
-{
+public class ListenForAudioCommand : MonoBehaviour {
+    private bool soundFlapEnabled = true;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float db = MicInput.MicLoudnessinDecibels;
+    void Update() {
+        if (soundFlapEnabled) {
+            float db = MicInput.MicLoudnessinDecibels;
 
-        if (db < 1 && db > -20f)
-        {
-            Flapper.instance.audioShouldFlap = true;
-            print("Noise Made!");
+            if (db < 1 && db > -20f) {
+                Flapper.instance.audioShouldFlap = true;
+                print("Noise Made!");
+            }
+
+            //Debug.Log("Volume is " + MicInput.MicLoudness.ToString("##.#####") + ", decibels is :" + MicInput.MicLoudnessinDecibels.ToString("######"));
+            //Debug.Log("Volume is " + NormalizedLinearValue(MicInput.MicLoudness).ToString("#.####") + ", decibels is :" + NormalizedDecibelValue(MicInput.MicLoudnessinDecibels).ToString("#.####"));
         }
-
-        Debug.Log("Volume is " + MicInput.MicLoudness.ToString("##.#####") + ", decibels is :" + MicInput.MicLoudnessinDecibels.ToString("######"));
-        //Debug.Log("Volume is " + NormalizedLinearValue(MicInput.MicLoudness).ToString("#.####") + ", decibels is :" + NormalizedDecibelValue(MicInput.MicLoudnessinDecibels).ToString("#.####"));
     }
 
+    public bool GetSoundFlapEnabled() {
+        return soundFlapEnabled;
+    }
 
-    float NormalizedLinearValue(float v)
-    {
+    public void ToggleSoundFlapEnabled() {
+        soundFlapEnabled = !soundFlapEnabled;
+
+        // DEGBUG LOG
+        print("Toggled! soundFlapEnabled = " + soundFlapEnabled);
+    }
+    float NormalizedLinearValue(float v) {
         float f = Mathf.InverseLerp(.000001f, .001f, v);
         return f;
     }
 
-    float NormalizedDecibelValue(float v)
-    {
+    float NormalizedDecibelValue(float v) {
         float f = Mathf.InverseLerp(-114.0f, 6f, v);
         return f;
     }
