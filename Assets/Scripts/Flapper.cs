@@ -7,6 +7,7 @@ public class Flapper : MonoBehaviour {
 
 	public float upForce; //Upward force of the "flap".
 	private bool isDead = false; //Has the player collided with a wall?
+	public bool audioShouldFlap = false;
 
 	private Animator anim; //Reference to the Animator component.
 	private Rigidbody2D rb2d; //Holds a reference to the Rigidbody2D component of the flapper.
@@ -56,7 +57,13 @@ public class Flapper : MonoBehaviour {
 
 	// Flapping controls here
 	public bool ShouldFlap() {
-		return Input.GetButtonDown("Flap") || Input.GetMouseButtonDown(0);
+		// Condense Flapping bools
+		bool shouldFlap = audioShouldFlap || Input.GetButtonDown("Flap") || Input.GetMouseButtonDown(0);
+		// Always reset audio back to false
+		audioShouldFlap = false;
+
+		// Answer this boolean
+		return shouldFlap;
 	}
 
 	public bool FlapFlapper() {
