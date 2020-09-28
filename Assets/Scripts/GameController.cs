@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
     public bool gameOver = false; //Is the game over?
     public float scrollSpeed = -1.5f;
 
-    public bool soundFlapEnabled = true;
+    //private bool soundFlapEnabled = true;
 
     void Awake() {
         // Enforce the singleton pattern for GameController

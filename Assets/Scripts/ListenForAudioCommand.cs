@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ListenForAudioCommand : MonoBehaviour {
+    private bool soundFlapEnabled = true;
     // Start is called before the first frame update
     void Start() {
 
@@ -19,7 +20,7 @@ public class ListenForAudioCommand : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (GameController.instance.soundFlapEnabled) {
+        if (soundFlapEnabled) {
             float db = MicInput.MicLoudnessinDecibels;
 
             if (db < 1 && db > -20f) {
@@ -27,11 +28,21 @@ public class ListenForAudioCommand : MonoBehaviour {
                 print("Noise Made!");
             }
 
-            Debug.Log("Volume is " + MicInput.MicLoudness.ToString("##.#####") + ", decibels is :" + MicInput.MicLoudnessinDecibels.ToString("######"));
+            //Debug.Log("Volume is " + MicInput.MicLoudness.ToString("##.#####") + ", decibels is :" + MicInput.MicLoudnessinDecibels.ToString("######"));
             //Debug.Log("Volume is " + NormalizedLinearValue(MicInput.MicLoudness).ToString("#.####") + ", decibels is :" + NormalizedDecibelValue(MicInput.MicLoudnessinDecibels).ToString("#.####"));
         }
     }
 
+    public bool GetSoundFlapEnabled() {
+        return soundFlapEnabled;
+    }
+
+    public void ToggleSoundFlapEnabled() {
+        soundFlapEnabled = !soundFlapEnabled;
+
+        // DEGBUG LOG
+        print("Toggled! soundFlapEnabled = " + soundFlapEnabled);
+    }
     float NormalizedLinearValue(float v) {
         float f = Mathf.InverseLerp(.000001f, .001f, v);
         return f;
